@@ -8,7 +8,7 @@ include 'conexion.php';
 	$actadescriptiva= $_POST["actadescriptiva"];
 	$costomateria= $_POST["costomateria"];
 	$entornomateria= $_POST["entorno_identorno"];
-	$prerrequisito= $_POST["prer_idprerequisito"];u
+	$prerrequisito= $_POST["prer_idprerequisito"];
     $materia= $_POST["materia_idmateria"];
 
     $idmateria= "1";
