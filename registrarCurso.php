@@ -14,4 +14,5 @@ $docente_iddocente=$_POST["Docente_IdDocente"];
 	}else{
 		echo "noRegistra";
 	} 
+	//Victor
 ?>
