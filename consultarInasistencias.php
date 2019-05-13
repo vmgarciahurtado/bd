@@ -7,9 +7,9 @@ $CodigoEstudiante=$_POST["CodigoEstudiante"];
     FROM Curso c JOIN Estudiantes_Curso ec ON(ec.Curso_IdCurso=c.IdCurso) JOIN Estudiante e ON
     (ec.IdEstudiante_Curso=e.CodigoEstudiante) WHERE ec.Estudiante_CodigoEstudiante=$CodigoEstudiante");
 	 if(oci_execute($consultar)){
-		echo "consultó";
+		echo "consulto";
 	}else{
-		echo "noConsultó";
+		echo "noConsulto";
 	} 
 ?>
 
