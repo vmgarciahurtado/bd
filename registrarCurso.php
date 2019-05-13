@@ -1,13 +1,13 @@
 <?PHP
 include 'conexion.php';
 
-$idcurso=$_POST["IdCurso"];
-$nombrecurso=$_POST["NombreCurso"];
-$añoencurso=$_POST["AñoEnCurso"];
-$materia_idmateria=$_POST["Materia_IdMateria"];
-$docente_iddocente=$_POST["Docente_IdDocente"];
+$idcurso=$_POST["idcurso"];
+$nombrecurso=$_POST["nombrecurso"];
+$anoencurso=$_POST["anoencurso"];
+$materia_idmateria=$_POST["materia_idmateria"];
+$docente_iddocente=$_POST["docente_iddocente"];
 
-	$agregar = oci_parse($conexion,"INSERT INTO Curso VALUES ('$idcurso','$nombrecurso','$añoencurso', '$materia_idmateria', '$docente_iddocente')");
+	$agregar = oci_parse($conexion,"INSERT INTO curso VALUES ('$idcurso','$nombrecurso','$anoencurso', '$materia_idmateria', '$docente_iddocente')");
 
 	 if(oci_execute($agregar)){
 		echo "registra";
