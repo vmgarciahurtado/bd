@@ -2,6 +2,7 @@
   <head>
 
   <?php
+  // prueba
         include 'conexion.php';
         $json=array();
         $query = "SELECT codigoestudiante FROM Estudiante where rownum = 1";
