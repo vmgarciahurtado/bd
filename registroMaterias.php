@@ -2,6 +2,7 @@
 include 'conexion.php';
 
 	//$idmateria= $_POST["idmateria"];
+	$idmateria= "1";
 	$nombre= $_POST["nombre"];
 	$intensidadhoraria= $_POST["intensidadhoraria"];
 	$numerocreditos= $_POST["nucreditoacademico"];
@@ -9,9 +10,9 @@ include 'conexion.php';
 	$costomateria= $_POST["costomateria"];
 	$entornomateria= $_POST["entorno_identorno"];
 	$prerrequisito= $_POST["prer_idprerequisito"];
-    $materia= $_POST["materia_idmateria"];
+    $materia= "1";
 
-    $idmateria= "1";
+    
 	/*$nombre= "Programacion";
 	$intensidadhoraria= "22";
 	$numerocreditos= "6";
