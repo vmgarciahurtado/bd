@@ -1,16 +1,19 @@
 <?PHP
 include 'conexion.php';
-	$codigo= $_POST["codigo"];
-	$cedula= $_POST["cedula"];
-	$nombre= $_POST["nombre"];
-	$fechaNacimiento= $_POST["fechaNacimiento"];
-	$estado= $_POST["estado"];
-	$direccion= $_POST["direccion"];
-	$telefono= $_POST["telefono"];
-	$correo= $_POST["correo"];
-	$programaAcademico= $_POST["programaAcademico"];
 
-	$agregar = oci_parse($conexion,"INSERT INTO estudiante VALUES ('$codigo','$cedula','$nombre','$fechaNacimiento','$estado','$direccion','$telefono','$correo','$programaAcademico')");
+	$codigo= $_POST["codigoestudiante"];
+	$cedula= $_POST["cedulaestudiante"];
+	$nombre= $_POST["nombreestudiante"];
+	$fechaNacimiento= $_POST["fechaNacimiento"];
+	$estado= $_POST["estadoestudiante"];
+	$direccion= $_POST["direccionestudiante"];
+	$telefono= $_POST["telefonoestudiante"];
+	$correo= $_POST["correoelectronico"];
+	$programaAcademico= $_POST["pacademico_idpacademico"];
+$semestre_idSemestre=$_POST["semestre_numerosemestre"];
+
+	$agregar = oci_parse($conexion,"INSERT INTO estudiante VALUES
+	('$codigo','$cedula','$nombre','$fechaNacimiento','$estado','$direccion','$telefono','$correo','$programaAcademico', '$semestre_idSemestre')");
 	 if(oci_execute($agregar)){
 		echo "registra";
 	}else{

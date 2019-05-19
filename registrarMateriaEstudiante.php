@@ -1,4 +1,4 @@
-?PHP
+<?PHP
 include 'conexion.php';
 	$codigo= $_POST["codigo"];
 	$cedula= $_POST["cedula"];

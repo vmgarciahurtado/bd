@@ -1,16 +1,14 @@
 <?PHP
 include 'conexion.php';
 
-	//$idmateria= $_POST["idmateria"];
-	$idmateria= "1";
 	$nombre= $_POST["nombre"];
 	$intensidadhoraria= $_POST["intensidadhoraria"];
 	$numerocreditos= $_POST["nucreditoacademico"];
 	$actadescriptiva= $_POST["actadescriptiva"];
 	$costomateria= $_POST["costomateria"];
 	$entornomateria= $_POST["entorno_identorno"];
-	$prerrequisito= $_POST["prer_idprerequisito"];
-    $materia= "1";
+	//$materia_IdMateria= $_POST["materia_idmateria"]
+	$materia"1";
 
     
 	/*$nombre= "Programacion";
@@ -24,8 +22,8 @@ include 'conexion.php';
 
 
 	$agregar = oci_parse($conexion,"INSERT INTO materia VALUES (
-        '$idmateria','$nombre','$intensidadhoraria','$numerocreditos',
-        '$actadescriptiva','$costomateria','$entornomateria','$prerrequisito','$materia')");
+      	'$nombre','$intensidadhoraria','$numerocreditos',
+        '$actadescriptiva','$costomateria','$entornomateria','$materia')");
 	 if(oci_execute($agregar)){
 		echo "registra";
 	}else{

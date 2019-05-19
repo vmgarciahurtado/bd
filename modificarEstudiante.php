@@ -1,14 +1,14 @@
 <?PHP
 include 'conexion.php';
-	$codigo= $_POST["codigo"];
-	$cedula= $_POST["cedula"];
-	$nombre= $_POST["nombre"];
+	$codigo= $_POST["codigoestudiante"];
+	$cedula= $_POST["cedulaestudiante"];
+	$nombre= $_POST["nombreestudiante"];
 	$fechaNacimiento= $_POST["fechaNacimiento"];
-	$estado= $_POST["estado"];
-	$direccion= $_POST["direccion"];
-	$telefono= $_POST["telefono"];
-	$correo= $_POST["correo"];
-	$programaAcademico= $_POST["programaAcademico"];
+	$estado= $_POST["estadoestudiante"];
+	$direccion= $_POST["direccionestudiante"];
+	$telefono= $_POST["telefonoestudiante"];
+	$correo= $_POST["correoelectronico"];
+	$programaAcademico= $_POST["pacademico_idpacademico"];
     $semestre = $_POST["semestre_numeroSemestre"];
 
 	$agregar = oci_parse($conexion,"UPDATE estudiante SET 

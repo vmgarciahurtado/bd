@@ -1,7 +1,8 @@
 <?php
 include 'conexion.php';
-$duracion = $_POST["duracion"];
-$iddocente = $_POST["iddocente"];
+
+$duracion = $_POST["duracioncontrato"];
+$iddocente = $_POST["docente_iddocente"];
 
 $agregar = oci_parse($conexion,"INSERT INTO contrato VALUES 
 ('$duracion','$iddocente')");
