@@ -17,7 +17,7 @@ oci_execute ($statement);
 
 while ($row = oci_fetch_array ($statement, (OCI_NUM+OCI_RETURN_LOBS))) {
     $result["nombreCurso"]= $row[0];
-    $result["estudiante"]=$row[1]:
+    $result["nombreestudiante"]=$row[1]:
     $result["docente"]=$row[2];
 	$json['cursos'][]=$result;
 }
