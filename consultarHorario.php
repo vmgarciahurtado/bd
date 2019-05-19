@@ -20,7 +20,7 @@ while ($row = oci_fetch_array ($statement, (OCI_NUM+OCI_RETURN_LOBS))) {
 	$result["nombremateria"]= $row[1];
 	$result["dia"]= $row[2];
 	$result["horainicio"]=$row[3];
-    $result["horafin"]=$row[4];
+    $result["horafin"]=$row[4]
     $json['horario'][]=$result;
 }
 echo json_encode($json)
