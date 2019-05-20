@@ -1,7 +1,7 @@
 <?PHP
 include 'conexion.php';
 
-$codigoEstudiante=$_POST["codigoEstudiante"]
+$codigoEstudiante=$_REQUEST["codigoEstudiante"];
 $json=array();
 
 $query = "SELECT codigoEstudiante, cedulaestudiante, nombreestudiante, fechanacimiento, estadoestudiante, 

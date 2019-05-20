@@ -1,7 +1,7 @@
 <?PHP
 include 'conexion.php';
 
-$iddocente=$_POST["iddocente"]
+$iddocente=$_REQUEST["iddocente"]
 $json=array();
 
 $query = "SELECT iddocente, nombredocente, tipodocente_idtipodocente, estadodocente 
