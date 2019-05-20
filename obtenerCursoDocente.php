@@ -3,7 +3,7 @@ include 'conexion.php';
 
 //$docente=$_POST["docente_iddocente"];
 $json=array();
-$docente= "1024";
+$docente= "123";
 
 $query = "SELECT nombrecurso
 FROM curso where docente_iddocente='$docente'";
