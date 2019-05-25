@@ -1,7 +1,11 @@
 <?PHP
 include 'conexion.php';
 
+<<<<<<< HEAD
 $codigoEstudiante=$_REQUES["codigoEstudiante"]
+=======
+$codigoEstudiante=$_REQUEST["codigoEstudiante"];
+>>>>>>> 7c41a1019b052d4211f0fa5f05f4b1d0af307712
 $json=array();
 
 $query = "SELECT codigoEstudiante, cedulaestudiante, nombreestudiante, fechanacimiento, estadoestudiante, 

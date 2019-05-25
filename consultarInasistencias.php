@@ -1,20 +1,25 @@
 <?PHP
 include 'conexion.php';
 
+$json=array();
 $CodigoEstudiante=$_POST["CodigoEstudiante"];
 
-    $consultar = oci_parse($conexion,"SELECT c.NombreCurso, sc.inasistencias
-	FROM seguimiento_corte sc JOIN seguimiento s ON(sc.idseguimientocorte = s.seg_corte_idsegcorte)
-	JOIN curso c ON(c.idcurso=s.curso_idcurso) WHERE s.estudiante_codigoestudiante='$CodigoEstudiante'");
-	 
-	 $statement = oci_parse ($conexion, $consultar);
-	 oci_execute ($statement);
-	 	 
-	 while ($row = oci_fetch_array ($statement, (OCI_NUM+OCI_RETURN_LOBS))) {
-		 $result["nombreCurso"]= $row[0];
-		 $result["inasistencias"]= $row[1];
-		 $json['fallas'][]=$result;
-	 }
-	 echo json_encode($json)
+$query = "SELECT sc.corte_idcorte, sc.inasistencia, c.nombrecurso, m.nombremateria
+FROM seguimiento_corte sc JOIN seguimiento s ON(sc.idseguimientocorte=s.seg_corte_idsegcorte)
+JOIN curso c ON(s.curso_idcurso=c.idcurso)
+JOIN materia m ON(m.idmateria=c.materia_idmateria) WHERE s.estudiante_codigoestudiante='$CodigoEstudiante'";
+
+$statement = oci_parse ($conexion, $query);
+oci_execute ($statement);
+
+
+while ($row = oci_fetch_array ($statement, (OCI_NUM+OCI_RETURN_LOBS))) {
+	$result["corte"]= $row[0];
+	$result["inasistencia"]=$row[1];
+	$result["curso"]=$row[2];
+	$result["materia"]=$row[3];
+	$json['fallas'][]=$result;
+}
+echo json_encode($json)
 ?>
 
