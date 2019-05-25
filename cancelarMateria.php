@@ -1,13 +1,11 @@
 <?PHP
 include 'conexion.php';
 
-$IdEstadoMateria=$_POST["IdEstadoMateria"];
-$TipoEstado=$_POST["TipoEstado"];
-$Materia_IdMateria=$_POST["Materia_IdMateria"];
-$Estudiante_CodigoEstudiante=$_POST["Estudiante_CodigoEstudiante"];
+$idMateria=$_REQUEST["Materia_IdMateria"];
+$Estudiante=$_REQUEST["Estudiante_CodigoEstudiante"];
 
     $modificar = oci_parse($conexion,"UPDATE EstadoMateria SET TipoEstado='Cancelada' WHERE 
-    IdEstadoMateria=$IdEstadoMateria");
+   	materia_idmateria='$idMateria' and estudiante_codigoestudiante='$Estudiante'");
 	 if(oci_execute($modificar)){
 		echo "modificado";
 	}else{
