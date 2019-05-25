@@ -2,7 +2,7 @@
 include 'conexion.php';
 
 $json=array();
-$query = "SELECT nombremateria,idmateria FROM materia";
+$query = "SELECT nombremateria,idmateria FROM materia order by idmateria";
 $statement = oci_parse ($conexion, $query);
 oci_execute ($statement);
 
