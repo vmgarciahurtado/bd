@@ -3,6 +3,7 @@ include 'conexion.php';
 
 $json = array();
 
+	$programa=$_POST["programa"];
 	$nombre= $_POST["nombre"];
 	$intensidadhoraria= $_POST["intensidadhoraria"];
 	$numerocreditos= $_POST["numerocreditos"];
@@ -12,7 +13,7 @@ $json = array();
 	$prerrequisito= $_POST["prerrequisito"];
 	$idmateria = "0";
 
-	$programa=$_POST["programa"];
+	
 
 	$insertar = oci_parse($conexion,"INSERT INTO materia VALUES 
 	('$idmateria','$nombre','$intensidadhoraria','$numerocreditos','$actadescriptiva','$costomateria','$entornomateria','$prerrequisito')");
@@ -30,7 +31,7 @@ $json = array();
 	}
  
 	$insertar2 = oci_parse($conexion,"INSERT INTO materiaprogramaacademico VALUES 
-	('$1','$json','$programa')");
+	('1','$json','$programa')");
 				
 	 if(oci_execute($insertar2)){
 		echo "registra";
