@@ -3,7 +3,7 @@ include 'conexion.php';
 
 $id=$_REQUEST["id"];
 $json=array();
-$query = "SELECT nombreprograma FROM programaacademico WHERE idprogramaacademico ='$id'";
+$query = "SELECT nombreprograma FROM programaacademico WHERE facultad_codigofacultad ='$id'";
 $statement = oci_parse ($conexion, $query);
 oci_execute ($statement);
 

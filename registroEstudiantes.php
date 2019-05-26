@@ -10,7 +10,7 @@ include 'conexion.php';
 	$telefono= $_POST["telefonoestudiante"];
 	$correo= $_POST["correoelectronico"];
 	$programaAcademico= $_POST["pacademico_idpacademico"];
-$semestre_idSemestre=$_POST["semestre_numerosemestre"];
+    $semestre_idSemestre=$_POST["semestre_numerosemestre"];
 
 	$agregar = oci_parse($conexion,"INSERT INTO estudiante VALUES
 	('$codigo','$cedula','$nombre','$fechaNacimiento','$estado','$direccion','$telefono','$correo','$programaAcademico', '$semestre_idSemestre')");
