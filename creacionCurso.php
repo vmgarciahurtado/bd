@@ -12,7 +12,8 @@ $horafincurso = $_POST["horafincurso"];
 	$agregar = oci_parse($conexion,"INSERT INTO curso VALUES 
     ('1','$nombrecurso','$anoencurso', '$materia_idmateria', '$docente_iddocente','$diacurso','$horainiciocurso','$horafincurso')");
 
-	 if(oci_execute($agregar)){
+
+	if(oci_execute($agregar)){
 		echo "registra";
 	}else{
 		echo "noRegistra";

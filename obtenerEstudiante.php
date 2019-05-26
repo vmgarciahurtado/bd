@@ -1,16 +1,12 @@
 <?PHP
 include 'conexion.php';
 
-<<<<<<< HEAD
-$codigoEstudiante=$_REQUES["codigoEstudiante"]
-=======
-$codigoEstudiante=$_REQUEST["codigoEstudiante"];
->>>>>>> 7c41a1019b052d4211f0fa5f05f4b1d0af307712
+$codigoestudiante=$_REQUEST["codigoestudiante"];
 $json=array();
 
 $query = "SELECT codigoEstudiante, cedulaestudiante, nombreestudiante, fechanacimiento, estadoestudiante, 
-direccionestudiante, telefonoestudiante, correoelectronico, pacademico_idpacademico, semestre_numerosemestre 
-FROM estudiante WHERE codigoEstudiante='$codigoEstudiante'";
+direccionestudiante, telefonoestudiante, correoelectronico
+FROM estudiante WHERE codigoEstudiante='$codigoestudiante'";
 
 $statement = oci_parse ($conexion, $query);
 oci_execute ($statement);
@@ -25,8 +21,8 @@ while ($row = oci_fetch_array ($statement, (OCI_NUM+OCI_RETURN_LOBS))) {
     $result["direccion"]= $row[5];
     $result["telefono"]= $row[6];
     $result["correo"]= $row[7];
-    $result["programa"]= $row[8];
-    $result["semestre"]= $row[9];
+    //$result["programa"]= $row[8];
+    //$result["semestre"]= $row[9];
 	$json['estudiantes'][]=$result;
 }
 echo json_encode($json)
