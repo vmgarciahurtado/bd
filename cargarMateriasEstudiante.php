@@ -5,9 +5,10 @@ include 'conexion.php';
 $json=array();
 $codigoEstudiante=$_REQUEST["estudiante"];
 
-$query = "SELECT m.idmateria, m.nombremateria
-FROM estudiante e JOIN estadomateria em JOIN materia m ON(m.idmateria=em.materia_idmateria) JOIN materiaprogramaacademico mp ON(mp.materia_idmateria=m.idmateria)
- WHERE e.pacademico_idpacademico=mp.pa_idpacademico AND em.estudiante_codigoestudiante=";
+$query = "SELECT m.idmateria, m.nombremateria FROM estudiante e JOIN programaacademico pa 
+ON(pa.idprogramaacademico=e.pacademico_idpacademico) join materiaprogramaacademico mpa 
+ON(mpa.pa_idpacademico=pa.idprogramaacademico)
+JOIN materia m ON(m.idmateria=mpa.materia_idmateria) WHERE e.codigoestudiante='$codigoEstudiante'";
 $statement = oci_parse ($conexion, $query);
 oci_execute ($statement);
 
