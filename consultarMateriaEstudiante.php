@@ -29,7 +29,6 @@ while ($row1 = oci_fetch_array ($statement2, (OCI_NUM+OCI_RETURN_LOBS))) {
 	$json2['promedio'][]=$result1;
 }
 
-
 while ($row = oci_fetch_array ($statement, (OCI_NUM+OCI_RETURN_LOBS))) {
 	$result["materia"]= $row[0];
 	$result["docente"]= $row[1];
@@ -39,6 +38,6 @@ while ($row = oci_fetch_array ($statement, (OCI_NUM+OCI_RETURN_LOBS))) {
 	$result["json"]= $result1;
 	$json['materia'][]=$result;
 }
-//echo json_encode($json2);
+
 echo json_encode($json)
 ?>
