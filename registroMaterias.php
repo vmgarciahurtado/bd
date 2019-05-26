@@ -1,6 +1,8 @@
 <?PHP
 include 'conexion.php';
 
+$json = array();
+
 	$nombre= $_POST["nombre"];
 	$intensidadhoraria= $_POST["intensidadhoraria"];
 	$numerocreditos= $_POST["numerocreditos"];
@@ -10,7 +12,6 @@ include 'conexion.php';
 	$prerrequisito= $_POST["prerrequisito"];
 	$idmateria = "0";
 
-	$materia=$_POST["materia"];
 	$programa=$_POST["programa"];
 
 	$insertar = oci_parse($conexion,"INSERT INTO materia VALUES 
@@ -20,19 +21,21 @@ include 'conexion.php';
 		echo "registra";
 	}else{
 		echo "noRegistra";
-	} 
+	}
 	
 	$idMateriaFK  = oci_parse($conexion, "SELECT idmateria FROM materia where rownum=1 order by idmateria desc");
-    $respuesta  = oci_execute($idMateriaFK);
-	echo $respuesta;	 
-	/* INSERT A TABLA INTERMEDIA ENTRE MATERIA Y PROGRAMA
+	$respuesta  = oci_execute($idMateriaFK);
+	while ($row = oci_fetch_array ($idMateriaFK, (OCI_NUM+OCI_RETURN_LOBS))) {
+		$json = $row[0];
+	}
+ 
 	$insertar2 = oci_parse($conexion,"INSERT INTO materiaprogramaacademico VALUES 
-	('$1','$materia','$programa')");
+	('$1','$json','$programa')");
 				
 	 if(oci_execute($insertar2)){
 		echo "registra";
 	}else{
 		echo "noRegistra";
-	}*/ 
+	}
 ?>
 
