@@ -7,7 +7,7 @@ include 'conexion.php';
     $HoraFinClase=$_POST["HoraFinClase"];
     $HoraInicioAsesoria= $_POST["HoraInicioAsesoria"];
     $HoraFinAsesoria= $_POST["HoraFinAsesoria"];
-    $Docente_IdDocente=$_POST["Docente_IdDocente"]
+    $Docente_IdDocente=$_POST["Docente_IdDocente"];
     
 	$agregar = oci_parse($conexion,"INSERT INTO Agenda VALUES ('$IdAgenda', '$Dia', '$HoraInicioClase', '$HoraFinClase', '$HoraInicioAsesoria', '$HoraFinAsesoria', '$Docente_IdDocente')");
 	 if(oci_execute($agregar)){
