@@ -25,7 +25,7 @@ thead{
     color:white;
 }
 
-tr:nth-child(even){
+tr:nth-child{
     background-color: #ddd;
 }
 
