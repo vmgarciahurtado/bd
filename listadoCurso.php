@@ -3,7 +3,7 @@ include 'conexion.php';
 
 //$docente=$_POST["docente_iddocente"];
 $json=array();
-$docente= "2";
+$docente= "1";
 
 $query = "SELECT c.nombrecurso, e.nombreestudiante, d.nombredocente
 FROM Curso c JOIN estudiantes_curso ec ON(ec.curso_idcurso=c.idcurso)
@@ -17,7 +17,6 @@ oci_execute ($statement);
 
 while ($row = oci_fetch_array ($statement, (OCI_NUM+OCI_RETURN_LOBS))) {
     $result["nombreCurso"]= $row[0];
-
     $result["estudiante"]=$row[1];
     $result["nombreestudiante"]=$row[1];
     $result["docente"]=$row[2];
