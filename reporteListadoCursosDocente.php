@@ -30,8 +30,7 @@
 		<tr>
     <thead>
 			<td>CURSO</td>
-			<td>CODIGO</td>
-            <td>DOCENTE</td>
+			<td>CODIGO CURSO</td>
 
       </thead>
 		</tr>
@@ -41,7 +40,7 @@
 include 'conexion.php';
 //$docente=$_POST["codigo"];
 $docente= "1";
-$query = "SELECT c.nombrecurso,c.idcurso, d.nombredocente
+$query = "SELECT c.nombrecurso,c.idcurso
 FROM curso c JOIN docente d ON(c.docente_iddocente = d.iddocente)
 WHERE d.iddocente='$docente'";
 $statement = oci_parse ($conexion, $query);
@@ -53,7 +52,6 @@ while ($row = oci_fetch_array ($statement, (OCI_NUM+OCI_RETURN_LOBS))) {
 		<tr>
 			<td><?php echo $row[0] ?></td>
 			<td><?php echo $row[1] ?></td>
-            <td><?php echo $row[2] ?></td>
 		</tr>
 	<?php 
 	}

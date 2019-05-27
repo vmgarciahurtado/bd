@@ -31,9 +31,8 @@
     <thead>
 			<td>CURSO</td>
 			<td>ESTUDIANTE</td>
-			<td>DOCENTE</td>
-      <td>CORTE</td>
       <td>DEFINITIVA</td>
+      
       </thead>
 		</tr>
 
@@ -42,14 +41,14 @@
 include 'conexion.php';
 //$docente=$_POST["codigo"];
 $docente= "2";
-$query = "SELECT c.nombrecurso, e.nombreestudiante, d.nombredocente, ct.nombrecorte, sc.definitivacorte
+$query = "SELECT c.nombrecurso, e.nombreestudiante, ROUND(SUM(sc.definitivacorte)/3, 2)
 FROM Curso c JOIN estudiantes_curso ec ON(c.idcurso = ec.curso_idcurso)
 JOIN estudiante e ON(e.codigoestudiante=ec.estudiante_codigoestudiante)
 JOIN materia m ON(c.materia_idmateria=m.idmateria)
 JOIN docente d ON(d.iddocente=c.docente_iddocente)
 JOIN seguimiento s ON(s.curso_idcurso=c.idcurso)
 JOIN seguimiento_corte sc ON(sc.idSeguimientocorte=s.seg_corte_idsegcorte)
-JOIN corte ct ON(sc.corte_idcorte=ct.idcorte) WHERE d.iddocente='$docente'";
+JOIN corte ct ON(sc.corte_idcorte=ct.idcorte) WHERE d.iddocente='$docente' group by c.nombrecurso, e.nombreestudiante, d.nombredocente ";
 $statement = oci_parse ($conexion, $query);
 oci_execute ($statement);
 
@@ -60,8 +59,6 @@ while ($row = oci_fetch_array ($statement, (OCI_NUM+OCI_RETURN_LOBS))) {
 			<td><?php echo $row[0] ?></td>
 			<td><?php echo $row[1] ?></td>
 			<td><?php echo $row[2] ?></td>
-      <td><?php echo $row[3] ?></td>
-      <td><?php echo $row[4] ?></td>
 		</tr>
 	<?php 
 	}
