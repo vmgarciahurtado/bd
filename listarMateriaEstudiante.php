@@ -6,7 +6,7 @@ $codigoEstudiante=$_REQUEST["codigo"];
 
 $query = "SELECT m.idmateria, m.nombremateria
 FROM materia m JOIN estadomateria em ON(em.materia_idmateria=m.idmateria)
-WHERE em.estudiante_codigoestudiante='$codigoEstudiante' and em.tipoestado='1'";
+WHERE em.estudiante_codigoestudiante='$codigoEstudiante' and em.tipoestado='Disponible' group by m.idmateria, m.nombremateria";
 
 $statement = oci_parse ($conexion, $query);
 oci_execute ($statement);
