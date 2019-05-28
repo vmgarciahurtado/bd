@@ -1,7 +1,7 @@
 <?PHP
 include 'conexion.php';
 
-$json = array();
+	$json = array();
 
 	$programa=$_POST["programa"];
 	$nombre= $_POST["nombre"];
