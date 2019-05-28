@@ -18,6 +18,11 @@ include 'conexion.php';
 		echo "registra";
 	}else{
 		echo "noRegistra";
-	} 
+	}
+
+	$tipo = "estudiante";
+	$agregar2 = oci_parse($conexion,"INSERT INTO ingreso VALUES('$codigo','$cedula','$tipo')");
+	oci_execute($agregar2);
+
 ?>
 

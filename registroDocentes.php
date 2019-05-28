@@ -13,5 +13,11 @@ include 'conexion.php';
 	}else{
 		echo "noRegistra";
 	} 
+
+
+	$tipo = "docente";
+	$agregar2 = oci_parse($conexion,"INSERT INTO ingreso VALUES('$iddocente','$iddocente','$tipo')");
+	oci_execute($agregar2);
+
 ?>
 

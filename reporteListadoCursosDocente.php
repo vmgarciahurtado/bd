@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>LISTADO CURSO direccionestudiante</title>
+    <script type="text/javascript" src="html2canvas.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="estilos.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
@@ -29,25 +30,19 @@
 		<tr>
     <thead>
 			<td>CURSO</td>
-			<td>ESTUDIANTE</td>
-			<td>DOCENTE</td>
-      <td>CORTE</td>
-      <td>DEFINITIVA</td>
+			<td>CODIGO CURSO</td>
+
       </thead>
 		</tr>
 
 		<?php 
 
 include 'conexion.php';
-
-$query = "SELECT c.nombrecurso, e.nombreestudiante, d.nombredocente, ct.nombrecorte, sc.definitivacorte
-FROM Curso c JOIN estudiantes_curso ec ON(c.idcurso = ec.curso_idcurso)
-JOIN estudiante e ON(e.codigoestudiante=ec.estudiante_codigoestudiante)
-JOIN materia m ON(c.materia_idmateria=m.idmateria)
-JOIN docente d ON(d.iddocente=c.docente_iddocente)
-JOIN seguimiento s ON(s.curso_idcurso=c.idcurso)
-JOIN seguimiento_corte sc ON(sc.idSeguimientocorte=s.seg_corte_idsegcorte)
-JOIN corte ct ON(sc.corte_idcorte=ct.idcorte) WHERE d.iddocente=2";
+//$docente=$_POST["codigo"];
+$docente= "1";
+$query = "SELECT c.nombrecurso,c.idcurso
+FROM curso c JOIN docente d ON(c.docente_iddocente = d.iddocente)
+WHERE d.iddocente='$docente'";
 $statement = oci_parse ($conexion, $query);
 oci_execute ($statement);
 
@@ -57,9 +52,6 @@ while ($row = oci_fetch_array ($statement, (OCI_NUM+OCI_RETURN_LOBS))) {
 		<tr>
 			<td><?php echo $row[0] ?></td>
 			<td><?php echo $row[1] ?></td>
-			<td><?php echo $row[2] ?></td>
-      <td><?php echo $row[3] ?></td>
-      <td><?php echo $row[4] ?></td>
 		</tr>
 	<?php 
 	}
