@@ -2,11 +2,11 @@
 include 'conexion.php';
 
 $json=array();
-$docente= $_REQUEST["iddocente"];
+$curso= $_REQUEST["curso"];
 
 $query = "SELECT c.idcurso, c.nombrecurso, e.codigoestudiante, e.nombreestudiante
 FROM estudiante e JOIN estudiantes_curso ec ON(ec.estudiante_codigoestudiante=e.codigoestudiante)
-JOIN curso c ON(c.idcurso=ec.curso_idcurso) WHERE c.docente_iddocente='$docente'";
+JOIN curso c ON(c.idcurso=ec.curso_idcurso) WHERE ec.curso_idcurso='$curso'";
 
 $statement = oci_parse ($conexion, $query);
 oci_execute ($statement);

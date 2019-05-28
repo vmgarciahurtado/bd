@@ -1,7 +1,6 @@
 <?PHP
 include 'conexion.php';
 
-//$docente=$_POST["docente_iddocente"];
 $json=array();
 $docente=$_REQUEST["docente"];
 
