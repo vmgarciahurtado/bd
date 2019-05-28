@@ -26,7 +26,14 @@
     
     <div class="panel-body" align="center">
     </div>
-    <center><table id="main-container" border="1px" width="50%"></center>
+    
+    <center><IMG SRC="logo2.png" WIDTH=280 HEIGHT=210 BORDER=0 ALT="Un bebé"></center>
+    <br>
+    <br>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id totam enim blanditiis odio? Nulla, dicta suscipit natus dolores sunt expedita ipsam corrupti blanditiis adipisci cumque consequatur quis optio neque! Quisquam.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam sapiente nam dolorum exercitationem dolore saepe, non iure, modi debitis deserunt cupiditate sint. Asperiores expedita ex laboriosam debitis, tempora odit obcaecati.</p>
+    <div id="piechart" style="width: 100%; max-width:900px; height: 700px; "></div>
+    <center><table class="main-container" border="1px" width="50%"></center>
 		<tr>
     <thead>
 			<td>CURSO</td>
@@ -39,8 +46,7 @@
 		<?php 
 
 include 'conexion.php';
-//$docente=$_POST["codigo"];
-$docente= "2";
+$docente=$_POST["codigo"];
 $query = "SELECT c.nombrecurso, e.nombreestudiante, ROUND(SUM(sc.definitivacorte)/3, 2)
 FROM Curso c JOIN estudiantes_curso ec ON(c.idcurso = ec.curso_idcurso)
 JOIN estudiante e ON(e.codigoestudiante=ec.estudiante_codigoestudiante)

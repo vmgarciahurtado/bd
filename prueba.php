@@ -48,9 +48,9 @@
    {
     var data = google.visualization.arrayToDataTable([
           ['Curso', 'Por curso'],
-          ['Ganadores',    parseInt('<?php echo $json3 ?>')],
-          ['Perdedores',      parseInt('<?php echo $json2 ?>')],
-          ['Desertores',  parseInt('<?php echo $json1 ?>')]
+          ['Ganadores',    10/*parseInt('<?php echo $json3 ?>')*/],
+          ['Perdedores',      10/*parseInt('<?php echo $json2 ?>')*/],
+          ['Desertores',  10/*parseInt('<?php echo $json1 ?>')*/]
         ]);
 
         var options = {
@@ -69,20 +69,15 @@
     });
     chart.draw(data, options);
    }
-
-   function drawTable() {
-        //var data = new google.visualization.DataTable();
-        //var table = new google.visualization.Table(document.getElementById('table_div'));
-
-       // table.draw(data, {showRowNumber: true, width: '40%', height: '40%'});
-      }
         </script>
 
     </head>  
-    <body>  
+    <body> 
+     
         <br /><br />  
         
         <div class="container" id="testing">  
+        <center><table id="main-container" border="1px" width="50%"></center>
         <br>
             <h3 align="center">PRUEBA GRAFICA</h3>  
         <br />
@@ -94,7 +89,7 @@
     <div class="panel-body" align="center">
      <div id="piechart" style="width: 100%; max-width:900px; height: 500px; "></div>
     </div>
-    <center><table id="main-container" border="1px" width="50%"></center>
+    
 		<tr>
     <thead>
 			<td>CODIGO</td>
