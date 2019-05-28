@@ -8,7 +8,10 @@
 
         // GANADORES
         $json1=array();
-        $query = "SELECT codigoestudiante FROM Estudiante where rownum = 1";
+        $query = "SELECT COUNT(*) FROM(SELECT count(e.codigoestudiante)
+        FROM estudiante e JOIN seguimiento s ON(s.estudiante_codigoestudiante=e.codigoestudiante) 
+        JOIN seguimiento_corte sc ON(sc.idseguimientocorte=s.seg_corte_idsegcorte) JOIN curso c ON(c.idcurso=s.curso_idcurso)
+        group by e.codigoestudiante having round(sum(sc.definitivacorte)/3)>3)";
         $statement = oci_parse ($conexion, $query);
         oci_execute ($statement);
 
@@ -16,7 +19,7 @@
             $json1 = $row[0];
           }
 
-          // PERDEDORES
+          /* PERDEDORES
         $json2=array();
         $query2 = "SELECT codigoestudiante FROM Estudiante where rownum = 1";
         $statement2 = oci_parse ($conexion, $query2);
@@ -24,7 +27,7 @@
 
         while ($row = oci_fetch_array ($statement2, (OCI_NUM+OCI_RETURN_LOBS))){
             $json2 = $row[0];
-          }
+        }*/
       ?>
 
     <title>REPORTE PORCENTAJE DE MORTALIDAD</title>
@@ -41,8 +44,8 @@
         // RECUERDE QUE PARA QUE IMPRIMAN LOS DATOS SOLO ES QUE IMPRIMA EL JSON EN CADA COLUMNA
         var data = google.visualization.arrayToDataTable([
           ['Effort', 'Amount given'],
-          ['Perdedores',     50/*parseInt('<?php echo $json3 ?>')*/],
-          ['Ganadores',     50],
+          ['Ganadores',     parseInt('<?php echo $json1 ?>')],
+          ['Perdedores',     50],
         ]);
 
         var options = {

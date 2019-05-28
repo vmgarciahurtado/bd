@@ -4,11 +4,14 @@
   <?php
   // SORNERES AQUÍ DEBERÍAN IR LOS VALORES EN BRUTO DE CANTIDAD ESTUDIANTES APROBADOS, REPROBADOS Y DESERTORES PARA IMPRIMIR
   // OBVIAMENTE HAY QUE CAMBIAR LA CONSULTA, PERO LA TRATE DE PREPARAR PARA QUE SÓLO SEA ESO
-      /*  include 'conexion.php';
+        include 'conexion.php';
 
         // APROBADOS
         $json1=array();
-        $query = "SELECT codigoestudiante FROM Estudiante where rownum = 1";
+        $query = "SELECT COUNT(*) FROM(SELECT count(e.codigoestudiante)
+        FROM estudiante e JOIN seguimiento s ON(s.estudiante_codigoestudiante=e.codigoestudiante) 
+        JOIN seguimiento_corte sc ON(sc.idseguimientocorte=s.seg_corte_idsegcorte) JOIN curso c ON(c.idcurso=s.curso_idcurso)
+        group by e.codigoestudiante having round(sum(sc.definitivacorte)/3)>3)";
         $statement = oci_parse ($conexion, $query);
         oci_execute ($statement);
 
@@ -17,24 +20,30 @@
           }
 
           // REPROBADOS
-        $json2=array();
-        $query2 = "SELECT codigoestudiante FROM Estudiante where rownum = 1";
-        $statement2 = oci_parse ($conexion, $query2);
-        oci_execute ($statemen2);
-
-        while ($row = oci_fetch_array ($statement2, (OCI_NUM+OCI_RETURN_LOBS))){
-            $json2 = $row[0];
-          }
+          $json2=array();
+          $query2 = "SELECT COUNT(*) FROM(SELECT count(e.codigoestudiante)
+          FROM estudiante e JOIN seguimiento s ON(s.estudiante_codigoestudiante=e.codigoestudiante) 
+          JOIN seguimiento_corte sc ON(sc.idseguimientocorte=s.seg_corte_idsegcorte) JOIN curso c ON(c.idcurso=s.curso_idcurso)
+          group by e.codigoestudiante having round(sum(sc.definitivacorte)/3)<3)";
+          $statement2 = oci_parse ($conexion, $query2);
+          oci_execute ($statement2);
+  
+          while ($row = oci_fetch_array ($statement2, (OCI_NUM+OCI_RETURN_LOBS))){
+              $json2 = $row[0];
+            }
 
           // DESERTORES
         $json3=array();
-        $query3 = "SELECT codigoestudiante FROM Estudiante where rownum = 1";
+        $query3 = "SELECT count(*) FROM(SELECT count(e.codigoestudiante)
+        FROM estudiante e JOIN seguimiento s ON(s.estudiante_codigoestudiante=e.codigoestudiante) 
+        JOIN seguimiento_corte sc ON(sc.idseguimientocorte=s.seg_corte_idsegcorte) JOIN curso c ON(c.idcurso=s.curso_idcurso)
+        group by e.codigoestudiante having sum(sc.inasistencia)>13)";
         $statement3 = oci_parse ($conexion, $query3);
-        oci_execute ($statemen3);
+        oci_execute ($statement3);
 
         while ($row = oci_fetch_array ($statement3, (OCI_NUM+OCI_RETURN_LOBS))){
             $json3 = $row[0];
-          }*/
+          }
       ?>
 
     <title>REPORTE PORCENTAJE DE MORTALIDAD</title>
@@ -50,9 +59,9 @@
             // ESTÁ SERÍA LA MANERA EN LA QUE SE VISUALIZARÍAN LOS DATOS (RECUERDE DEBEN SER DATOS EN BRUTO)
       var data = google.visualization.arrayToDataTable([
         ['Year', 'Reprobados', { role: 'style' } ],
-        ['Aprobados', 10/*parseInt('<?php echo $json3 ?>')*/, 'color: gray'],
-        ['Reprobados', 14, 'color: #76A7FA'],
-        ['Desertores', 5, 'opacity: 0.2']
+        ['Aprobados', parseInt('<?php echo $json1 ?>'), 'color: gray'],
+        ['Reprobados', parseInt('<?php echo $json2 ?>'), 'color: #76A7FA'],
+        ['Desertores', parseInt('<?php echo $json3 ?>'), 'opacity: 0.2']
       ]);
 
       var options = {

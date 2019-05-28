@@ -33,7 +33,7 @@
     
 		<?php 
 include 'conexion.php';
-$docente=$_POST["codigo"];
+$docente=$_REQUEST["codigo"];
 
 $query = "SELECT c.nombrecurso,c.idcurso
 FROM curso c JOIN docente d ON(c.docente_iddocente = d.iddocente)

@@ -4,11 +4,14 @@
   <?php
   // SORNERES AQUÍ DEBERÍAN IR LOS VALORES EN BRUTO DE CANTIDAD ESTUDIANTES QUIENS GANAN, Y DE LOS PERDEDORES PARA IMPRIMIR
   // OBVIAMENTE HAY QUE CAMBIAR LA CONSULTA, PERO LA TRATE DE PREPARAR PARA QUE SÓLO SEA ESO
-     /*   include 'conexion.php';
+        include 'conexion.php';
 
         // GANADORES
         $json1=array();
-        $query = "SELECT codigoestudiante FROM Estudiante where rownum = 1";
+        $query = "SELECT count(*) FROM(SELECT count(e.codigoestudiante)
+        FROM estudiante e JOIN seguimiento s ON(s.estudiante_codigoestudiante=e.codigoestudiante) 
+        JOIN seguimiento_corte sc ON(sc.idseguimientocorte=s.seg_corte_idsegcorte) JOIN curso c ON(c.idcurso=s.curso_idcurso)
+        group by e.codigoestudiante having sum(sc.inasistencia)<13)";
         $statement = oci_parse ($conexion, $query);
         oci_execute ($statement);
 
@@ -18,13 +21,16 @@
 
           // PERDEDORES
         $json2=array();
-        $query2 = "SELECT codigoestudiante FROM Estudiante where rownum = 1";
+        $query2 = "SELECT count(*) FROM(SELECT count(e.codigoestudiante)
+        FROM estudiante e JOIN seguimiento s ON(s.estudiante_codigoestudiante=e.codigoestudiante) 
+        JOIN seguimiento_corte sc ON(sc.idseguimientocorte=s.seg_corte_idsegcorte) JOIN curso c ON(c.idcurso=s.curso_idcurso)
+        group by e.codigoestudiante having sum(sc.inasistencia)>13)";
         $statement2 = oci_parse ($conexion, $query2);
-        oci_execute ($statement);
+        oci_execute ($statement2);
 
         while ($row = oci_fetch_array ($statement2, (OCI_NUM+OCI_RETURN_LOBS))){
             $json2 = $row[0];
-          }*/
+          }
       ?>
 
     <title>REPORTE PORCENTAJE DE MORTALIDAD</title>
@@ -40,8 +46,8 @@
       function drawChart() {
       var data = google.visualization.arrayToDataTable([
         ['Year', 'Docente', { role: 'style' } ],
-        ['Aprobados dentro del limite de asistencias', 12/*parseInt('<?php echo $json3 ?>')*/, 'stroke-color: #703593; stroke-width: 4; fill-color: #C5A5CF'],
-        ['Reprobados fuera del limite de asistencias', 7, 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2']
+        ['Reprobados dentro del limite de asistencias', parseInt('<?php echo $json2 ?>'), 'stroke-color: #703593; stroke-width: 4; fill-color: #C5A5CF'],
+        ['Aprobados fuera del limite de asistencias', parseInt('<?php echo $json1 ?>'), 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2']
       ]);
 
       var options = {
