@@ -11,7 +11,7 @@ include 'conexion.php';
 	$costomateria= $_POST["costomateria"];
 	$entornomateria= $_POST["entornomateria"];	
 	$prerrequisito= $_POST["prerrequisito"];
-	$idmateria = "0";
+	$idmateria = "1";
 
 	
 

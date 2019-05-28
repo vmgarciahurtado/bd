@@ -1,9 +1,9 @@
 <?PHP
 include 'conexion.php';
 
-//$docente=$_POST["docente_iddocente"];
+
 $json=array();
-$docente= "2";
+$docente=$_POST["docente_iddocente"];
 
 $query = "SELECT c.nombrecurso, e.nombreestudiante, d.nombredocente, ct.nombrecorte, sc.definitivacorte
 FROM Curso c JOIN estudiantes_curso ec ON(ec.curso_idcurso=c.idcurso)
